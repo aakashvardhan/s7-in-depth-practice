@@ -53,6 +53,9 @@ def test_model_sanity(model_):
     with torch.no_grad():
         data, target = next(iter(train_loader))
         final_loss = loss_function(model(data), target).item()
+        
+    print('Initial loss:', initial_loss)
+    print('Final loss:', final_loss)    
 
     assert final_loss < initial_loss, "Sanity check failed: Loss did not decrease after training."
     
