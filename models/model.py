@@ -145,11 +145,41 @@ class model2(nn.Module):
         
             
 class model3(nn.Module):
-    def __init__(self, n_channels=24):
+    def __init__(self, n_channels=12):
         super().__init__()
         
         # Convolution Block 1
-        self.conv1 = ConvBlock(1, n_channels // 2)
+        self.conv1 = ConvBlock(1, n_channels // 2) # output_size = 26, RF = 3
+        self.conv2 = ConvBlock(n_channels // 2, n_channels // 3, dropout_value=0.1) # output_size = 24, RF = 5
+        self.conv3 = ConvBlock(n_channels // 3, n_channels, dropout_value=0.1) # output_size = 22, RF = 7
+        
+        # Transition Block 1
+        self.transition1 = TransitionBlock(n_channels, n_channels // 2) # output_size = 11, RF = 8
+        
+        # Convolution Block 2
+        self.conv4 = ConvBlock(n_channels // 2, n_channels // 2, dropout_value=0.1) # output_size = 9, RF = 12
+        self.conv5 = ConvBlock(n_channels // 2, n_channels // 3, dropout_value=0.1) # output_size = 7, RF = 16
+        self.conv6 = ConvBlock(n_channels // 3, n_channels, dropout_value=0.1) # output_size = 5, RF = 20
+        
+        # Output Block
+        self.adapool = nn.AdaptiveAvgPool2d((1,1)) # output_size = 1, RF = 28
+        
+        self.conv7 = nn.Sequential(
+            nn.Conv2d(in_channels=n_channels, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
+        ) # output_size = 1, RF = 28
+        
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.conv2(x)
+        x = self.conv3(x)
+        x = self.transition1(x)
+        x = self.conv4(x)
+        x = self.conv5(x)
+        x = self.conv6(x)
+        x = self.adapool(x)
+        x = self.conv7(x)
+        x = x.view(-1, 10)
+        return F.log_softmax(x, dim=-1)
         
             
     
