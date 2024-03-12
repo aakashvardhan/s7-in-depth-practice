@@ -110,3 +110,30 @@ def plt_fig():
     axs[1, 1].set_title("Test Accuracy")
     # Save the figure
     fig.savefig("model_performance.png")
+    
+    
+def get_incorrect_predictions(model, device, test_loader):
+    model.eval()
+    incorrect = []
+    incorrect_pred = []
+    incorrect_target = []
+    with torch.no_grad():
+        for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+            incorrect += (pred.eq(target.view_as(pred)) == False).nonzero()[:, 0].cpu().numpy().tolist()
+            incorrect_pred += pred[pred.eq(target.view_as(pred)) == False].cpu().numpy().tolist()
+            incorrect_target += target[pred.eq(target.view_as(pred)) == False].cpu().numpy().tolist()
+    return incorrect, incorrect_pred, incorrect_target
+
+def plot_incorrect(incorrect, incorrect_pred, incorrect_target, test_loader):
+    fig = plt.figure(figsize=(10, 10))
+    fig.tight_layout()
+    for i, (inc, inc_pred, inc_target) in enumerate(zip(incorrect[:25], incorrect_pred[:25], incorrect_target[:25])):
+        plt.subplot(5, 5, i+1)
+        plt.imshow(test_loader.dataset.test_data[inc].cpu().numpy(), cmap='gray', interpolation='none')
+        plt.title(f"Target: {inc_target} Predicted: {inc_pred}")
+        plt.xticks([])
+        plt.yticks([])
+    fig.savefig("incorrect_predictions.png")

@@ -101,7 +101,8 @@ class TransitionBlock(nn.Module):
         self.pool = nn.MaxPool2d(2, 2)
         
     def forward(self, x):
-        return self.pool(self.conv1d(x))
+        x = self.conv1d(x)
+        return self.pool(x)
     
 class model2(nn.Module):
     def __init__(self, n_channels=16):
@@ -143,11 +144,17 @@ class model2(nn.Module):
         return F.log_softmax(x, dim=-1)
         
             
+class model3(nn.Module):
+    def __init__(self, n_channels=24):
+        super().__init__()
+        
+        # Convolution Block 1
+        self.conv1 = ConvBlock(1, n_channels // 2)
         
             
     
 if __name__ == '__main__':
-    model = model2()
+    model = model3()
     model_summary(model, input_size=(1, 28, 28))
     test_model_sanity(model)
         
