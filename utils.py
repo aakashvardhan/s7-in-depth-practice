@@ -1,6 +1,35 @@
 from tqdm import tqdm
 import torch
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
+
+
+def get_device():
+    # Use GPU if it's available
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    return device
+
+def mnist_stat(train_loader):
+    # We'd need to convert it into Numpy! Remember above we have converted it into tensors already
+    train_data = train.train_data
+    train_data = train.transform(train_data.numpy())
+
+    print('[Train]')
+    print(' - Numpy Shape:', train.train_data.cpu().numpy().shape)
+    print(' - Tensor Shape:', train.train_data.size())
+    print(' - min:', torch.min(train_data))
+    print(' - max:', torch.max(train_data))
+    print(' - mean:', torch.mean(train_data))
+    print(' - std:', torch.std(train_data))
+    print(' - var:', torch.var(train_data))
+
+    dataiter = iter(train_loader)
+    images, labels = next(dataiter)
+
+    print(images.shape)
+    print(labels.shape)
+
+    plt.imshow(images[0].numpy().squeeze(), cmap='gray_r')
 
 train_losses = []
 test_losses = []
@@ -61,3 +90,23 @@ def test(model, device, test_loader):
         100. * correct / len(test_loader.dataset)))
     
     test_acc.append(100. * correct / len(test_loader.dataset))
+    
+
+# Function to plot the training and testing graphs for loss and accuracy
+def plt_fig():
+    # Create a 2x2 grid of subplots
+    fig, axs = plt.subplots(2,2,figsize=(15,10))
+    # Plot training loss
+    axs[0, 0].plot(train_losses)
+    axs[0, 0].set_title("Training Loss")
+    # Plot training accuracy
+    axs[1, 0].plot(train_acc)
+    axs[1, 0].set_title("Training Accuracy")
+    # Plot testing loss
+    axs[0, 1].plot(test_losses)
+    axs[0, 1].set_title("Test Loss")
+    # Plot testing accuracy
+    axs[1, 1].plot(test_acc)
+    axs[1, 1].set_title("Test Accuracy")
+    # Save the figure
+    fig.savefig("model_performance.png")
