@@ -122,9 +122,15 @@ def get_incorrect_predictions(model, device, test_loader):
             data, target = data.to(device), target.to(device)
             output = model(data)
             pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
-            incorrect += (pred.eq(target.view_as(pred)) == False).nonzero()[:, 0].cpu().numpy().tolist()
-            incorrect_pred += pred[pred.eq(target.view_as(pred)) == False].cpu().numpy().tolist()
-            incorrect_target += target[pred.eq(target.view_as(pred)) == False].cpu().numpy().tolist()
+            is_incorrect = pred.eq(target.view_as(pred)) == False
+
+            # Iterate over each prediction to collect incorrect ones
+            for idx, (p, t) in enumerate(zip(pred.view(-1), target)):
+                if is_incorrect[idx]:
+                    incorrect.append(idx)
+                    incorrect_pred.append(p.item())
+                    incorrect_target.append(t.item())
+
     return incorrect, incorrect_pred, incorrect_target
 
 def plot_incorrect(incorrect, incorrect_pred, incorrect_target, test_loader):
