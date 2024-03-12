@@ -97,16 +97,16 @@ def plt_fig():
     # Create a 2x2 grid of subplots
     fig, axs = plt.subplots(2,2,figsize=(15,10))
     # Plot training loss
-    axs[0, 0].plot(train_losses)
+    axs[0, 0].plot([loss.cpu() for loss in train_losses])
     axs[0, 0].set_title("Training Loss")
     # Plot training accuracy
-    axs[1, 0].plot(train_acc)
+    axs[1, 0].plot([acc.cpu() for acc in train_acc])
     axs[1, 0].set_title("Training Accuracy")
     # Plot testing loss
-    axs[0, 1].plot(test_losses)
+    axs[0, 1].plot([loss.cpu() for loss in test_losses])
     axs[0, 1].set_title("Test Loss")
     # Plot testing accuracy
-    axs[1, 1].plot(test_acc)
+    axs[1, 1].plot([acc.cpu() for acc in test_acc])
     axs[1, 1].set_title("Test Accuracy")
     # Save the figure
     fig.savefig("model_performance.png")
