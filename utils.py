@@ -115,8 +115,6 @@ def plt_fig():
 def get_incorrect_predictions(model, device, test_loader):
     model.eval()
     incorrect = []
-    incorrect_pred = []
-    incorrect_target = []
     with torch.no_grad():
         for data, target in test_loader:
             data, target = data.to(device), target.to(device)
@@ -124,22 +122,23 @@ def get_incorrect_predictions(model, device, test_loader):
             pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
             is_incorrect = pred.eq(target.view_as(pred)) == False
 
-            # Iterate over each prediction to collect incorrect ones
-            for idx, (p, t) in enumerate(zip(pred.view(-1), target)):
-                if is_incorrect[idx]:
-                    incorrect.append(idx)
-                    incorrect_pred.append(p.item())
-                    incorrect_target.append(t.item())
+            for d, p, t, o in zip(data, pred, target, output):
+                if is_incorrect:
+                    incorrect.append([d.cpu(), p.cpu(), t.cpu(), o[p.item()].cpu()])
+                    
+    return incorrect
 
-    return incorrect, incorrect_pred, incorrect_target
-
-def plot_incorrect(incorrect, incorrect_pred, incorrect_target, test_loader):
-    fig = plt.figure(figsize=(10, 10))
+def plot_incorrect(incorrect, classes=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']):
+    total_inc = len(incorrect)
+    print(f'Total Incorrect: {total_inc}')
+    
+    fig = plt.figure(figsize=(8, 10))
     fig.tight_layout()
-    for i, (inc, inc_pred, inc_target) in enumerate(zip(incorrect[:25], incorrect_pred[:25], incorrect_target[:25])):
-        plt.subplot(5, 5, i+1)
-        plt.imshow(test_loader.dataset.test_data[inc].cpu().numpy(), cmap='gray', interpolation='none')
-        plt.title(f"Target: {inc_target} Predicted: {inc_pred}")
-        plt.xticks([])
-        plt.yticks([])
-    fig.savefig("incorrect_predictions.png")
+    for i in range(6):
+        plt.subplot(3, 3, i+1)
+        plt.imshow(incorrect[i][0].numpy().squeeze(), cmap='gray_r')
+        plt.title(f"Predicted: {classes[incorrect[i][1].item()]}\nActual: {classes[incorrect[i][2].item()]}")
+        plt.axis('off')
+        
+        
+        
