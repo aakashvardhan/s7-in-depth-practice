@@ -145,7 +145,7 @@ class model2(nn.Module):
         
             
 class model3(nn.Module):
-    def __init__(self, n_channels=20):
+    def __init__(self, n_channels=16):
         super().__init__()
         
         # Convolution Block 1
