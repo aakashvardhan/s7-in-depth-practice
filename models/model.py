@@ -158,16 +158,16 @@ class model3(nn.Module):
         
         # Convolution Block 2
         self.conv4 = ConvBlock(n_channels // 2, n_channels // 2) # output_size = 9, RF = 12
-        self.conv5 = ConvBlock(n_channels // 2, n_channels,dropout_value=0.1) # output_size = 7, RF = 16
-        self.conv6 = ConvBlock(n_channels, n_channels, padding=1,dropout_value=0.1) # output_size = 7, RF = 16
+        self.conv5 = ConvBlock(n_channels // 2, n_channels) # output_size = 7, RF = 16
+        self.conv6 = ConvBlock(n_channels, n_channels, padding=1) # output_size = 7, RF = 16
         
         # Output Block
-        self.gap = nn.Sequential(
-            nn.AvgPool2d(kernel_size=7)
-        ) # output_size = 1, RF = 28
-        
         self.conv7 = nn.Sequential(
             nn.Conv2d(in_channels=n_channels, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
+        ) # output_size = 1, RF = 28
+        
+        self.gap = nn.Sequential(
+            nn.AvgPool2d(kernel_size=7)
         ) # output_size = 1, RF = 28
         
     def forward(self, x):
@@ -178,8 +178,8 @@ class model3(nn.Module):
         x = self.conv4(x)
         x = self.conv5(x)
         x = self.conv6(x)
-        x = self.gap(x)
         x = self.conv7(x)
+        x = self.gap(x)
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=-1)
         
