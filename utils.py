@@ -120,7 +120,7 @@ def get_incorrect_predictions(model, device, test_loader):
             data, target = data.to(device), target.to(device)
             output = model(data)
             pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
-            is_incorrect = pred.eq(target.view_as(pred)) == False
+            is_incorrect = pred.eq(target.view_as(pred)).item() == False
 
             for d, p, t, o in zip(data, pred, target, output):
                 if is_incorrect:

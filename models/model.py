@@ -145,24 +145,24 @@ class model2(nn.Module):
         
             
 class model3(nn.Module):
-    def __init__(self, n_channels=16):
+    def __init__(self, n_channels=20):
         super().__init__()
         
         # Convolution Block 1
         self.conv1 = ConvBlock(1, n_channels // 2) # output_size = 26, RF = 3
         self.conv2 = ConvBlock(n_channels // 2, n_channels) # output_size = 24, RF = 5
-        self.conv3 = ConvBlock(n_channels, n_channels, padding=1) # output_size = 24, RF = 5
+        self.conv3 = ConvBlock(n_channels, n_channels) # output_size = 22, RF = 7
         
         # Transition Block 1
-        self.transition1 = TransitionBlock(n_channels, n_channels // 2) # output_size = 12, RF = 6
+        self.transition1 = TransitionBlock(n_channels, n_channels // 2) # output_size = 11, RF = 8
         
         # Convolution Block 2
-        self.conv4 = ConvBlock(n_channels // 2, n_channels // 2, dropout_value=0.1) # output_size = 10, RF = 10
-        self.conv5 = ConvBlock(n_channels // 2, n_channels, dropout_value=0.1) # output_size = 8, RF = 14
-        self.conv6 = ConvBlock(n_channels, n_channels, padding=1) # output_size = 8, RF = 14
+        self.conv4 = ConvBlock(n_channels // 2, n_channels // 2, dropout_value=0.1) # output_size = 9, RF = 12
+        self.conv5 = ConvBlock(n_channels // 2, n_channels, dropout_value=0.1) # output_size = 7, RF = 16
+        self.conv6 = ConvBlock(n_channels, n_channels, padding=1) # output_size = 7, RF = 16
         
         # Output Block
-        self.adapool = nn.AdaptiveAvgPool2d(1) # output_size = 1, RF = 28
+        self.adaptive_pool = nn.AdaptiveAvgPool2d((1, 1)) # output_size = 1, RF = 28
         
         self.conv7 = nn.Sequential(
             nn.Conv2d(in_channels=n_channels, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
@@ -176,7 +176,7 @@ class model3(nn.Module):
         x = self.conv4(x)
         x = self.conv5(x)
         x = self.conv6(x)
-        x = self.adapool(x)
+        x = self.adaptive_pool(x)
         x = self.conv7(x)
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=-1)
