@@ -28,7 +28,7 @@ def test_model_sanity(model_):
     model = model_
     loss_function = F.nll_loss
     # Using SGD as the optimizer
-    optimizer = optim.SGD(model.parameters(), lr=0.03, momentum=0.9)
+    optimizer = optim.SGD(model.parameters(), lr=0.04, momentum=0.9)
     
     # Create data loader
     train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
@@ -42,7 +42,7 @@ def test_model_sanity(model_):
     
     # Train the model on the small subset
     model.train()  # Set the model back to train mode
-    for epoch in range(1, 4):  # Running for 3 epochs just for testing
+    for epoch in range(1, 5):  # Running for 4 epochs just for testing
         print(f"Epoch {epoch}")
         pbar = tqdm(train_loader)
 

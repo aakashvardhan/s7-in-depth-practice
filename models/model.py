@@ -157,14 +157,14 @@ class model3(nn.Module):
         self.transition1 = TransitionBlock(n_channels, n_channels // 2) # output_size = 11, RF = 8
         
         # Convolution Block 2
-        self.conv4 = ConvBlock(n_channels // 2, n_channels // 2) # output_size = 9, RF = 12
-        self.conv5 = ConvBlock(n_channels // 2, n_channels) # output_size = 7, RF = 16
+        self.conv4 = ConvBlock(n_channels // 2, n_channels, dropout_value=0.1) # output_size = 9, RF = 12
+        self.conv5 = ConvBlock(n_channels, n_channels, dropout_value=0.1) # output_size = 7, RF = 16
         self.conv6 = ConvBlock(n_channels, n_channels, padding=1) # output_size = 7, RF = 16
         
         # Output Block
         self.conv7 = nn.Sequential(
             nn.Conv2d(in_channels=n_channels, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
-        ) # output_size = 1, RF = 28
+        ) # output_size = 7, RF = 16
         
         self.gap = nn.Sequential(
             nn.AvgPool2d(kernel_size=7)
