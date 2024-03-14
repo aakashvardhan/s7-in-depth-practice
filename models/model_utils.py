@@ -28,7 +28,7 @@ def test_model_sanity(model_):
     model = model_
     loss_function = F.nll_loss
     # Using SGD as the optimizer
-    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9)
+    optimizer = optim.SGD(model.parameters(), lr=0.03, momentum=0.9)
     
     # Create data loader
     train_loader = DataLoader(train_subset, batch_size=10, shuffle=True)
