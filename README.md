@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Our aim is to design an efficient Convolutional Neural Network (CNN) for digit classification on the MNIST dataset. The target is to achieve a test accuracy of 99.4% with a model that has less than 8,000 parameters.
+Our aim is to design an efficient Convolutional Neural Network (CNN) for digit classification on the MNIST dataset. The target is to achieve a test accuracy of 99.4% with a model that has less than 8,000 parameters and less than 15 epochs.
 
 ## Code Iterations
 
@@ -140,3 +140,38 @@ Estimated Total Size (MB): 1.02
     - The model is close to 8,000 parameters but the test accuracy is still below 99.4%.
 
 ### Iteration 3
+
+- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_with_transformed.ipynb)
+
+- **Changes**:
+  - Added data augmentation to the training dataset using the `transforms` module from `torchvision`.
+    - `RandomResizedCrop`: Randomly crop the image and resize it to (28, 28) at the scale of (0.8, 1.0).
+    - `RandomRotation`: Randomly rotate the image by a maximum of 7 degrees.
+
+- **Results**: 
+  - Parameters: 8,008
+  - Best Train Accuracy: 98.54%
+  - Best Test Accuracy: 99.27%
+
+- **Analysis**:
+    - The model is not overfitting anymore.
+    - The test accuracy is close to 99.4% but the model is still not able to achieve the target.
+
+### Iteration 4
+
+- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_withLRScheduler.ipynb)
+
+- **Changes**:
+  - Added a learning rate scheduler to the training loop.
+    - Used the `StepLR` scheduler from the `torch.optim.lr_scheduler` module.
+    - Reduced the learning rate by a factor of 0.1 after every 7 epochs.
+
+- **Results**:
+    - Parameters: 8,008
+    - Best Train Accuracy: 98.81%
+    - Best Test Accuracy: 99.30%
+
+- **Analysis**:
+    - The model has slightly improved with the increase in test accuracy by 0.03%.
+
+    
