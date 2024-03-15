@@ -174,3 +174,80 @@ Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main
 - **Analysis**:
     - The model has slightly improved with the increase in test accuracy by 0.03%.
 
+### Iteration 5
+
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model3_with_img_aug.ipynb)
+
+- **Changes**:
+  - Reduced the number of parameters to 5,932 in the model by rearranging the layers and reducing the number of channels in the convolution layers.
+  - Removed the `RandomResizedCrop` and `RandomRotation` data augmentation techniques from the training dataset.
+  - Added new data augmentation techniques to the training dataset using the `transforms` module from `torchvision`.
+    - `RandomAffine`: Randomly apply affine transformations to the image, translating the image by a maximum of 0.1, shearing the image by a maximum of 10 degrees, and scaling the image by a factor of (0.8, 1.2).
+    - `ColorJitter`: Randomly change the brightness, contrast, saturation, and hue of the image.
+
+#### Model Summary
+
+```
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1            [-1, 4, 26, 26]              36
+              ReLU-2            [-1, 4, 26, 26]               0
+       BatchNorm2d-3            [-1, 4, 26, 26]               8
+           Dropout-4            [-1, 4, 26, 26]               0
+         ConvBlock-5            [-1, 4, 26, 26]               0
+            Conv2d-6            [-1, 8, 24, 24]             288
+              ReLU-7            [-1, 8, 24, 24]               0
+       BatchNorm2d-8            [-1, 8, 24, 24]              16
+           Dropout-9            [-1, 8, 24, 24]               0
+        ConvBlock-10            [-1, 8, 24, 24]               0
+           Conv2d-11           [-1, 16, 22, 22]           1,152
+             ReLU-12           [-1, 16, 22, 22]               0
+      BatchNorm2d-13           [-1, 16, 22, 22]              32
+          Dropout-14           [-1, 16, 22, 22]               0
+        ConvBlock-15           [-1, 16, 22, 22]               0
+           Conv2d-16            [-1, 8, 22, 22]             128
+        MaxPool2d-17            [-1, 8, 11, 11]               0
+  TransitionBlock-18            [-1, 8, 11, 11]               0
+           Conv2d-19              [-1, 8, 9, 9]             576
+             ReLU-20              [-1, 8, 9, 9]               0
+      BatchNorm2d-21              [-1, 8, 9, 9]              16
+          Dropout-22              [-1, 8, 9, 9]               0
+        ConvBlock-23              [-1, 8, 9, 9]               0
+           Conv2d-24             [-1, 16, 7, 7]           1,152
+             ReLU-25             [-1, 16, 7, 7]               0
+      BatchNorm2d-26             [-1, 16, 7, 7]              32
+          Dropout-27             [-1, 16, 7, 7]               0
+        ConvBlock-28             [-1, 16, 7, 7]               0
+           Conv2d-29             [-1, 16, 7, 7]           2,304
+             ReLU-30             [-1, 16, 7, 7]               0
+      BatchNorm2d-31             [-1, 16, 7, 7]              32
+          Dropout-32             [-1, 16, 7, 7]               0
+        ConvBlock-33             [-1, 16, 7, 7]               0
+        AvgPool2d-34             [-1, 16, 1, 1]               0
+           Conv2d-35             [-1, 10, 1, 1]             160
+================================================================
+Total params: 5,932
+Trainable params: 5,932
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.70
+Params size (MB): 0.02
+Estimated Total Size (MB): 0.73
+----------------------------------------------------------------
+```
+
+- **Results**:
+  - Parameters: 5,932
+  - Best Train Accuracy: 98.38%
+  - Best Test Accuracy: 99.38%
+
+- **Analysis**:
+    - The model has improved significantly with the test accuracy reaching 99.38%.
+    - However, the model's accuracy was plateauing after 10 epochs, which indicates that the model has learned the dataset and is not improving further.
+
+### Iteration 6
+
+
+
