@@ -8,11 +8,11 @@ Our aim is to design an efficient Convolutional Neural Network (CNN) for digit c
 
 We have made several iterations to reach our target. The iterations are as follows:
 
-- Link to model and its utilities: [Model Folder](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main/models)
+Link to model and its utilities: [Model Folder](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main/models)
 
 ### Iteration 1
 
-- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model1_train.ipynb)
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model1_train.ipynb)
 
 #### Model Summary
 
@@ -68,7 +68,7 @@ Estimated Total Size (MB): 0.65
 
 ### Iteration 2
 
-- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model2_train.ipynb)
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model2_train.ipynb)
 
 - **Changes**:
   - Created a modular structure for the model.
@@ -141,7 +141,7 @@ Estimated Total Size (MB): 1.02
 
 ### Iteration 3
 
-- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_with_transformed.ipynb)
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_with_transformed.ipynb)
 
 - **Changes**:
   - Added data augmentation to the training dataset using the `transforms` module from `torchvision`.
@@ -174,4 +174,3 @@ Estimated Total Size (MB): 1.02
 - **Analysis**:
     - The model has slightly improved with the increase in test accuracy by 0.03%.
 
-    
