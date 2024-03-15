@@ -380,5 +380,16 @@ Loss=0.0379183366894722 Batch_id=468 Accuracy=98.49: 100%|███████�
 Test set: Average loss: 0.0174, Accuracy: 9944/10000 (99.44%)
 ```
 
-![Accuracy and Loss](
+![Accuracy and Loss](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/final-model-performance.png)
+
+- **Results**:
+  - Parameters: 7,676
+  - Best Train Accuracy: 98.49%
+  - Best Test Accuracy: 99.44%
+
+- **Analysis**:
+    - The model has achieved the target test accuracy of 99.4% consistently.
+    - The model has learned the dataset and is not overfitting or underfitting.
+
+
 
