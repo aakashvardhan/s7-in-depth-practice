@@ -1,8 +1,8 @@
 # Efficient CNN for digit classification on MNIST dataset
 
-- [Step 1: (Iteration 1)] (#iteration-1)
-- [Step 2: (Iteration 2-5)] (#iteration-2)
-- [Step 3: (Iteration 6-8)] (#iteration-6)
+- [Step 1: (Iteration 1)] ([#iteration-1](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main?tab=readme-ov-file#iteration-1))
+- [Step 2: (Iteration 2-5)] ([#iteration-2](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main?tab=readme-ov-file#iteration-2))
+- [Step 3: (Iteration 6-8)] ([#iteration-6](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main?tab=readme-ov-file#iteration-6))
 
 ## Introduction
 
