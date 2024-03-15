@@ -1,5 +1,9 @@
 # Efficient CNN for digit classification on MNIST dataset
 
+- Step 1: (Iteration 1) [#iteration-1]
+- Step 2: (Iteration 2-5) [#iteration-2]
+- Step 3: (Iteration 6-8) [#iteration-3]
+
 ## Introduction
 
 Our aim is to design an efficient Convolutional Neural Network (CNN) for digit classification on the MNIST dataset. The target is to achieve a test accuracy of 99.4% with a model that has less than 8,000 parameters and less than 15 epochs.
