@@ -249,5 +249,136 @@ Estimated Total Size (MB): 0.73
 
 ### Iteration 6
 
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model3_with_reduceLRPlateau.ipynb)
 
+- **Changes**:
+  - Added a learning rate scheduler to the training loop.
+    - Used the `ReduceLROnPlateau` scheduler from the `torch.optim.lr_scheduler` module.
+    - Reduced the learning rate by a factor of 0.1 when the test loss did not improve for 2 epochs.
+  - Followed by `Conv(1x1)`, `AvgPool2d` is used to reduce the number of channels to 10.
+
+- **Results**:
+  - Parameters: 5,932
+  - Best Train Accuracy: 98.68%
+  - Best Test Accuracy: 99.40%
+
+- **Analysis**:
+    - The model has achieved the target test accuracy of 99.4%
+    - However, the test accuracy is not consistent and fluctuates around 99.4% or below that.
+
+## Final Iteration
+
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/model3_with_increasedParam.ipynb)
+
+- **Changes**:
+  - Increased the number of parameters to 7,676 in the model.
+  - Removed the `ReduceLROnPlateau` scheduler and used the `StepLR` scheduler from the `torch.optim.lr_scheduler` module.
+  - Increased the learning rate to 0.04 and reduced the learning rate by a factor of 0.1 after every 7 epochs.
+
+#### Model Summary
+
+```
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1            [-1, 4, 26, 26]              36
+              ReLU-2            [-1, 4, 26, 26]               0
+       BatchNorm2d-3            [-1, 4, 26, 26]               8
+           Dropout-4            [-1, 4, 26, 26]               0
+         ConvBlock-5            [-1, 4, 26, 26]               0
+            Conv2d-6            [-1, 8, 24, 24]             288
+              ReLU-7            [-1, 8, 24, 24]               0
+       BatchNorm2d-8            [-1, 8, 24, 24]              16
+           Dropout-9            [-1, 8, 24, 24]               0
+        ConvBlock-10            [-1, 8, 24, 24]               0
+           Conv2d-11           [-1, 16, 22, 22]           1,152
+             ReLU-12           [-1, 16, 22, 22]               0
+      BatchNorm2d-13           [-1, 16, 22, 22]              32
+          Dropout-14           [-1, 16, 22, 22]               0
+        ConvBlock-15           [-1, 16, 22, 22]               0
+           Conv2d-16            [-1, 8, 22, 22]             128
+        MaxPool2d-17            [-1, 8, 11, 11]               0
+  TransitionBlock-18            [-1, 8, 11, 11]               0
+           Conv2d-19             [-1, 16, 9, 9]           1,152
+             ReLU-20             [-1, 16, 9, 9]               0
+      BatchNorm2d-21             [-1, 16, 9, 9]              32
+          Dropout-22             [-1, 16, 9, 9]               0
+        ConvBlock-23             [-1, 16, 9, 9]               0
+           Conv2d-24             [-1, 16, 7, 7]           2,304
+             ReLU-25             [-1, 16, 7, 7]               0
+      BatchNorm2d-26             [-1, 16, 7, 7]              32
+          Dropout-27             [-1, 16, 7, 7]               0
+        ConvBlock-28             [-1, 16, 7, 7]               0
+           Conv2d-29             [-1, 16, 7, 7]           2,304
+             ReLU-30             [-1, 16, 7, 7]               0
+      BatchNorm2d-31             [-1, 16, 7, 7]              32
+          Dropout-32             [-1, 16, 7, 7]               0
+        ConvBlock-33             [-1, 16, 7, 7]               0
+           Conv2d-34             [-1, 10, 7, 7]             160
+        AvgPool2d-35             [-1, 10, 1, 1]               0
+================================================================
+Total params: 7,676
+Trainable params: 7,676
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.73
+Params size (MB): 0.03
+Estimated Total Size (MB): 0.76
+----------------------------------------------------------------
+```
+
+#### Results
+
+```
+EPOCH: 1
+Loss=0.08434382826089859 Batch_id=468 Accuracy=86.18: 100%|██████████| 469/469 [00:46<00:00, 10.14it/s]
+Test set: Average loss: 0.0588, Accuracy: 9827/10000 (98.27%)
+
+EPOCH: 2
+Loss=0.0978543683886528 Batch_id=468 Accuracy=96.30: 100%|██████████| 469/469 [00:42<00:00, 10.97it/s]
+Test set: Average loss: 0.0355, Accuracy: 9887/10000 (98.87%)
+
+EPOCH: 3
+Loss=0.03732876852154732 Batch_id=468 Accuracy=96.96: 100%|██████████| 469/469 [00:42<00:00, 10.91it/s]
+Test set: Average loss: 0.0367, Accuracy: 9872/10000 (98.72%)
+
+EPOCH: 4
+Loss=0.06504508852958679 Batch_id=468 Accuracy=97.27: 100%|██████████| 469/469 [00:43<00:00, 10.79it/s]
+Test set: Average loss: 0.0288, Accuracy: 9909/10000 (99.09%)
+
+EPOCH: 5
+Loss=0.12743593752384186 Batch_id=468 Accuracy=97.59: 100%|██████████| 469/469 [00:42<00:00, 11.01it/s]
+Test set: Average loss: 0.0338, Accuracy: 9886/10000 (98.86%)
+
+...
+...
+...
+
+EPOCH: 10
+Loss=0.031964439898729324 Batch_id=468 Accuracy=98.37: 100%|██████████| 469/469 [00:43<00:00, 10.84it/s]
+Test set: Average loss: 0.0182, Accuracy: 9945/10000 (99.45%)
+
+EPOCH: 11
+Loss=0.13113215565681458 Batch_id=468 Accuracy=98.40: 100%|██████████| 469/469 [00:42<00:00, 10.97it/s]
+Test set: Average loss: 0.0168, Accuracy: 9943/10000 (99.43%)
+
+EPOCH: 12
+Loss=0.05126373469829559 Batch_id=468 Accuracy=98.34: 100%|██████████| 469/469 [00:43<00:00, 10.76it/s]
+Test set: Average loss: 0.0171, Accuracy: 9943/10000 (99.43%)
+
+EPOCH: 13
+Loss=0.06044589355587959 Batch_id=468 Accuracy=98.41: 100%|██████████| 469/469 [00:43<00:00, 10.88it/s]
+Test set: Average loss: 0.0174, Accuracy: 9948/10000 (99.48%)
+
+EPOCH: 14
+Loss=0.02426617406308651 Batch_id=468 Accuracy=98.37: 100%|██████████| 469/469 [00:43<00:00, 10.69it/s]
+Test set: Average loss: 0.0171, Accuracy: 9942/10000 (99.42%)
+
+EPOCH: 15
+Loss=0.0379183366894722 Batch_id=468 Accuracy=98.49: 100%|██████████| 469/469 [00:43<00:00, 10.78it/s]
+Test set: Average loss: 0.0174, Accuracy: 9944/10000 (99.44%)
+```
+
+![Accuracy and Loss](
 
