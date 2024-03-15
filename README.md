@@ -1,8 +1,8 @@
 # Efficient CNN for digit classification on MNIST dataset
 
-- Step 1: (Iteration 1) [#iteration-1]
-- Step 2: (Iteration 2-5) [#iteration-2]
-- Step 3: (Iteration 6-8) [#iteration-3]
+- [Step 1: (Iteration 1)] (#iteration-1)
+- [Step 2: (Iteration 2-5)] (#iteration-2)
+- [Step 3: (Iteration 6-8)] (#iteration-6)
 
 ## Introduction
 
