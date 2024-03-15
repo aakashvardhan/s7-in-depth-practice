@@ -8,7 +8,7 @@ Our aim is to design an efficient Convolutional Neural Network (CNN) for digit c
 
 We have made several iterations to reach our target. The iterations are as follows:
 
-- Link to model and its utilities: [Link](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main/models)
+- Link to model and its utilities: [Model Folder](https://github.com/aakashvardhan/s7-in-depth-practice/tree/main/models)
 
 ### Iteration 1
 
