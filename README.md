@@ -159,7 +159,7 @@ Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main
 
 ### Iteration 4
 
-- [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_withLRScheduler.ipynb)
+Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/notebooks/train_withLRScheduler.ipynb)
 
 - **Changes**:
   - Added a learning rate scheduler to the training loop.
