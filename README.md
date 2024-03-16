@@ -317,8 +317,8 @@ Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main
       BatchNorm2d-31             [-1, 16, 7, 7]              32
           Dropout-32             [-1, 16, 7, 7]               0
         ConvBlock-33             [-1, 16, 7, 7]               0
-           Conv2d-34             [-1, 10, 7, 7]             160
-        AvgPool2d-35             [-1, 10, 1, 1]               0
+        AvgPool2d-34             [-1, 16, 1, 1]               0
+           Conv2d-35             [-1, 10, 1, 1]             160
 ================================================================
 Total params: 7,676
 Trainable params: 7,676
@@ -335,55 +335,66 @@ Estimated Total Size (MB): 0.76
 
 ```
 EPOCH: 1
-Loss=0.08434382826089859 Batch_id=468 Accuracy=86.18: 100%|██████████| 469/469 [00:46<00:00, 10.14it/s]
-Test set: Average loss: 0.0588, Accuracy: 9827/10000 (98.27%)
+Loss=0.1004672646522522 Batch_id=468 Accuracy=86.27: 100%|██████████| 469/469 [00:45<00:00, 10.38it/s]
+
+Test set: Average loss: 0.0586, Accuracy: 9845/10000 (98.45%)
 
 EPOCH: 2
-Loss=0.0978543683886528 Batch_id=468 Accuracy=96.30: 100%|██████████| 469/469 [00:42<00:00, 10.97it/s]
-Test set: Average loss: 0.0355, Accuracy: 9887/10000 (98.87%)
+Loss=0.15264847874641418 Batch_id=468 Accuracy=96.38: 100%|██████████| 469/469 [00:39<00:00, 11.92it/s]
+
+Test set: Average loss: 0.0359, Accuracy: 9884/10000 (98.84%)
 
 EPOCH: 3
-Loss=0.03732876852154732 Batch_id=468 Accuracy=96.96: 100%|██████████| 469/469 [00:42<00:00, 10.91it/s]
-Test set: Average loss: 0.0367, Accuracy: 9872/10000 (98.72%)
+Loss=0.02856213040649891 Batch_id=468 Accuracy=97.05: 100%|██████████| 469/469 [00:40<00:00, 11.59it/s]
+
+Test set: Average loss: 0.0347, Accuracy: 9893/10000 (98.93%)
 
 EPOCH: 4
-Loss=0.06504508852958679 Batch_id=468 Accuracy=97.27: 100%|██████████| 469/469 [00:43<00:00, 10.79it/s]
-Test set: Average loss: 0.0288, Accuracy: 9909/10000 (99.09%)
+Loss=0.12054858356714249 Batch_id=468 Accuracy=97.38: 100%|██████████| 469/469 [00:38<00:00, 12.04it/s]
+
+Test set: Average loss: 0.0273, Accuracy: 9907/10000 (99.07%)
 
 EPOCH: 5
-Loss=0.12743593752384186 Batch_id=468 Accuracy=97.59: 100%|██████████| 469/469 [00:42<00:00, 11.01it/s]
-Test set: Average loss: 0.0338, Accuracy: 9886/10000 (98.86%)
+Loss=0.11410161107778549 Batch_id=468 Accuracy=97.66: 100%|██████████| 469/469 [00:38<00:00, 12.07it/s]
+
+Test set: Average loss: 0.0269, Accuracy: 9912/10000 (99.12%)
 
 ...
 ...
 ...
 
 EPOCH: 10
-Loss=0.031964439898729324 Batch_id=468 Accuracy=98.37: 100%|██████████| 469/469 [00:43<00:00, 10.84it/s]
-Test set: Average loss: 0.0182, Accuracy: 9945/10000 (99.45%)
+Loss=0.0471225269138813 Batch_id=468 Accuracy=98.36: 100%|██████████| 469/469 [00:38<00:00, 12.03it/s]
+
+Test set: Average loss: 0.0192, Accuracy: 9937/10000 (99.37%)
 
 EPOCH: 11
-Loss=0.13113215565681458 Batch_id=468 Accuracy=98.40: 100%|██████████| 469/469 [00:42<00:00, 10.97it/s]
-Test set: Average loss: 0.0168, Accuracy: 9943/10000 (99.43%)
+Loss=0.10331092029809952 Batch_id=468 Accuracy=98.41: 100%|██████████| 469/469 [00:39<00:00, 12.01it/s]
+
+Test set: Average loss: 0.0179, Accuracy: 9942/10000 (99.42%)
 
 EPOCH: 12
-Loss=0.05126373469829559 Batch_id=468 Accuracy=98.34: 100%|██████████| 469/469 [00:43<00:00, 10.76it/s]
-Test set: Average loss: 0.0171, Accuracy: 9943/10000 (99.43%)
+Loss=0.034593913704156876 Batch_id=468 Accuracy=98.46: 100%|██████████| 469/469 [00:40<00:00, 11.72it/s]
+
+Test set: Average loss: 0.0180, Accuracy: 9942/10000 (99.42%)
 
 EPOCH: 13
-Loss=0.06044589355587959 Batch_id=468 Accuracy=98.41: 100%|██████████| 469/469 [00:43<00:00, 10.88it/s]
-Test set: Average loss: 0.0174, Accuracy: 9948/10000 (99.48%)
+Loss=0.05399972200393677 Batch_id=468 Accuracy=98.51: 100%|██████████| 469/469 [00:39<00:00, 11.81it/s]
+
+Test set: Average loss: 0.0181, Accuracy: 9942/10000 (99.42%)
 
 EPOCH: 14
-Loss=0.02426617406308651 Batch_id=468 Accuracy=98.37: 100%|██████████| 469/469 [00:43<00:00, 10.69it/s]
-Test set: Average loss: 0.0171, Accuracy: 9942/10000 (99.42%)
+Loss=0.012136869132518768 Batch_id=468 Accuracy=98.42: 100%|██████████| 469/469 [00:40<00:00, 11.62it/s]
+
+Test set: Average loss: 0.0182, Accuracy: 9937/10000 (99.37%)
 
 EPOCH: 15
-Loss=0.0379183366894722 Batch_id=468 Accuracy=98.49: 100%|██████████| 469/469 [00:43<00:00, 10.78it/s]
-Test set: Average loss: 0.0174, Accuracy: 9944/10000 (99.44%)
+Loss=0.03184324875473976 Batch_id=468 Accuracy=98.48: 100%|██████████| 469/469 [00:39<00:00, 11.89it/s]
+
+Test set: Average loss: 0.0185, Accuracy: 9942/10000 (99.42%)
 ```
 
-![Accuracy and Loss](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/final-model-performance.png)
+![Accuracy and Loss](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main/download.png)
 
 - **Results**:
   - Parameters: 7,676
