@@ -178,8 +178,8 @@ class model3(nn.Module):
         x = self.conv4(x)
         x = self.conv5(x)
         x = self.conv6(x)
-        x = self.conv7(x)
         x = self.gap(x)
+        x = self.conv7(x)
         x = x.view(-1, 10)
         return F.log_softmax(x, dim=-1)
         
