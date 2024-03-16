@@ -259,7 +259,6 @@ Link: [Notebook](https://github.com/aakashvardhan/s7-in-depth-practice/blob/main
   - Added a learning rate scheduler to the training loop.
     - Used the `ReduceLROnPlateau` scheduler from the `torch.optim.lr_scheduler` module.
     - Reduced the learning rate by a factor of 0.1 when the test loss did not improve for 2 epochs.
-  - Followed by `Conv(1x1)`, `AvgPool2d` is used to reduce the number of channels to 10.
 
 - **Results**:
   - Parameters: 5,932
