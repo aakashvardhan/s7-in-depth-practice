@@ -398,8 +398,8 @@ Test set: Average loss: 0.0185, Accuracy: 9942/10000 (99.42%)
 
 - **Results**:
   - Parameters: 7,676
-  - Best Train Accuracy: 98.49%
-  - Best Test Accuracy: 99.44%
+  - Best Train Accuracy: 98.48%
+  - Best Test Accuracy: 99.42%
 
 - **Analysis**:
     - The model has achieved the target test accuracy of 99.4% consistently.
